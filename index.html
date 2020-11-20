@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon Image -->
+    <link href="favicon.png" rel="icon" type="image/x-icon"/>
+        <title>Asana: Meditation Timer</title>
+</head>
+<body>
+
+<style>
+    *{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(109, 109, 117);
+}
+
+.app {
+    height: 100vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+header {
+   position: absolute;
+   top:0;
+   left:0;
+}
+
+#logo {
+    height: auto;
+    width: 80%;
+    padding: 5px 0 0 5px;
+}
+
+.time-select, .sound-picker, .player-container {
+    height: 80%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.player-container {
+    position: relative; 
+}
+
+.player-container svg {
+    position: absolute;
+    height: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    pointer-events: none;
+}
+
+.time-display {
+    position: absolute;
+    bottom: 10%;
+    color: white;
+    font-size: 50px;;
+}
+
+video {
+    position: fixed;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+.time-select button, .sound-picker button {
+    color: white;
+    width: 35%;
+    height: 10%;
+    background: none;
+    border: 2px solid white;
+    border-radius: 5px;
+    font-size: 20px;
+    transition: all .5s ease-out;
+    margin-bottom: 15px;
+}
+
+.time-select button:hover {
+    color: black;
+    background: white;
+}
+
+.sound-picker button {
+    border: none;
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    padding: 30px;
+}
+
+.sound-picker button:nth-child(1) {
+    background: #4971a1;
+}
+
+.sound-picker button:nth-child(2) {
+    background: #a14f49;
+}
+
+.sound-picker button img{
+    height: 100%;
+}
+
+@media (max-width: 1050px) { 
+    .time-select button{
+        width: 50%;
+    }
+    #logo{
+        width: 70%;
+        height: auto
+       }
+}
+
+@media (max-width: 650px) {
+    .app {
+        display: inline;  
+        margin: 1px;    
+    }
+
+    .time-select button {
+        width: 420px;
+        height: 50px;
+    }
+    
+    .player-container {
+        position: relative; 
+        margin-top: 130px;;
+    }
+    
+    .player-container svg {
+        height: 270px;
+    }
+    
+    .time-display {
+        position: absolute;
+        bottom: -165px;
+    }
+    
+    .sound-picker {
+        display: flex;
+        flex-direction: row;
+        margin-top: 170px;
+    }
+
+    .sound-picker button {
+        border: none;
+        height: 120px;
+        width: 120px;
+        border-radius: 50%;
+        padding: 30px;
+    }
+
+    header {
+        position: absolute;
+        top: 265px;
+        left: 33%;
+    }
+
+    #logo {
+        width: 125%;
+        height: auto
+    }
+}
+
+@media (max-width: 610px) {
+    header {
+        position: absolute;
+        top: 265px;
+        left: 30%;
+     }
+}
+
+@media (max-width: 530px) {
+    header {
+        position: absolute;
+        top: 265px;
+        left: 27%;
+     }
+}
+
+</style>
+
+<!-- Application Container -->
+<div class="app">
+
+<!-- Logo -->
+    <header>
+        <img id="logo" src="logo.png" alt="Asana Meditation Timer Logo">
+    </header>
+
+<!-- Video Container -->
+    <div class="vid-container">
+        <video playsinline loop title="Relaxing raindrops falling on a street">
+            <source src="rain.mp4" type="video/mp4">
+        </video>
+    </div>
+
+<!-- Lefthand Time Select Portion -->
+    <div class="time-select">
+        <button data-time="120">2 Minutes</button>
+        <button data-time="300">5 Minutes</button>
+        <button data-time="600">10 Minutes</button>
+    </div>
+
+<!-- Main Play/Pause Button -->
+    <div class="player-container">
+        <audio class="song">
+            <source src="rain.mp3">
+        </audio>
+        <img src="play.svg" alt=" play icon" class="play">
+
+
+        <!-- Track-Outline SVG -->
+            <svg 
+                class="track-outline"
+                width="453"
+                height="453"
+                viewbox="0 0 453 453"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                >
+                <circle
+                cx="226.5"
+                cy="226.5"
+                r="216.5"
+                stroke="white"
+                stroke-width="20"
+                />
+            </svg>
+            <!-- Moving-Outline SVG-->
+            <svg
+                class="moving-outline"
+                width="453"
+                height="453"
+                viewbox="0 0 453 453"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                >
+                <circle
+                cx="226.5"
+                cy="226.5"
+                r="216.5"
+                stroke="#018EBA"
+                stroke-width="20"/>
+            </svg>
+            
+        <!-- Time Display -->
+        <h3 class="time-display">0:00</h3>
+    </div>
+
+<!-- Righthand Background/Sound Designator -->
+    <div class="sound-picker">
+
+        <button data-sound="rain.mp3" data-video="rain.mp4">
+            <img src="rain.svg" alt="rain">
+        </button>
+
+        <button data-sound="beach.mp3" data-video="beach.mp4">
+            <img src="beach.svg" alt="beach">
+        </button>
+    </div>
+</div>
+    
+<!-- Scripts -->
+<script>
+    const app = () => {
+
+// Visual elements
+const outline = document.querySelector('.moving-outline circle');
+const video = document.querySelector('.vid-container video')
+
+// Sounds
+const sounds = document.querySelectorAll('.sound-picker button');
+const song = document.querySelector('.song');
+const play = document.querySelector('.play');
+
+
+//Time Display
+const timeDisplay = document.querySelector('.time-display');
+const timeSelect = document.querySelectorAll('.time-select button')
+
+//Get the length of outline
+const outlineLength = outline.getTotalLength();
+
+//Duration
+let fakeDuration = 60;
+
+outline.style.strokeDasharray = outlineLength;
+outline.style.strokeDashoffset = outlineLength;
+
+// Pick different sounds
+sounds.forEach(sound=> {
+    sound.addEventListener('click', function() {
+        song.src = this.getAttribute('data-sound');
+        video.src = this.getAttribute('data-video');
+        play.src = 'play.svg'
+    })
+})
+
+//Play Sound/Video
+play.addEventListener('click', () => {
+    checkPlaying(song);
+    }
+);
+
+//Select Sound
+timeSelect.forEach(option => {
+    option.addEventListener('click', function() {
+        fakeDuration = this.getAttribute('data-time');
+        timeDisplay.textContent = `${Math.floor(fakeDuration/60)}:${Math.floor(fakeDuration % 60)}0`
+    })
+})
+
+// Stop and play sounds and change icons
+const checkPlaying = song => {
+    if(song.paused){
+    song.play();
+    video.play();
+    play.src = "pause.svg"
+} else {
+    song.pause();
+    video.pause();
+    play.src='play.svg'
+    }
+};
+
+// Animate circle
+song.ontimeupdate = () => {
+    let currentTime = song.currentTime;
+    let elapsed = fakeDuration - currentTime;
+    let seconds = Math.floor(elapsed % 60);
+    let minutes = Math.floor(elapsed / 60);
+
+    let progress = outlineLength - (currentTime / fakeDuration) * outlineLength;
+    outline.style.strokeDashoffset = progress;
+
+    //Animate the text and handle edge cases of time display
+    if(seconds === 0){
+        seconds = seconds + '0'
+        timeDisplay.textContent=`${minutes}:${seconds}`
+    } else if(seconds < 10){
+        seconds = '0' + seconds
+        timeDisplay.textContent=`${minutes}:${seconds}`
+    } else{
+    timeDisplay.textContent=`${minutes}:${seconds}`}
+
+    if(currentTime >= fakeDuration){
+        song.pause();
+        song.currentTime = 0;
+        play.src = 'play.svg'
+        video.pause();
+    }
+};
+
+// To preload duration in with 1 minute
+timeDisplay.textContent = `${Math.floor(fakeDuration/60)}:${Math.floor(fakeDuration % 60)}0`    
+
+};
+
+app();
+</script>
+</body>
+</html>
