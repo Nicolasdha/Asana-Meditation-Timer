@@ -1,6 +1,5 @@
 const app = () => {
 
-
     // Visual elements
     const outline = document.querySelector('.moving-outline circle');
     const video = document.querySelector('.vid-container video')
@@ -25,13 +24,11 @@ const app = () => {
     outline.style.strokeDashoffset = outlineLength;
 
     // Pick different sounds
-
     sounds.forEach(sound=> {
         sound.addEventListener('click', function() {
             song.src = this.getAttribute('data-sound');
             video.src = this.getAttribute('data-video');
             play.src = './svg/play.svg'
-            checkPlaying(song);
         })
     })
 
@@ -50,7 +47,6 @@ const app = () => {
     })
 
     // Stop and play sounds and change icons
-
     const checkPlaying = song => {
         if(song.paused){
         song.play();
@@ -60,8 +56,8 @@ const app = () => {
         song.pause();
         video.pause();
         play.src='./svg/play.svg'
-    }
-};
+        }
+    };
 
     // Animate circle
     song.ontimeupdate = () => {
@@ -91,8 +87,8 @@ const app = () => {
         }
     };
 
-// To preload duration in with 1 minute
-timeDisplay.textContent = `${Math.floor(fakeDuration/60)}:${Math.floor(fakeDuration % 60)}0`    
+    // To preload duration in with 1 minute
+    timeDisplay.textContent = `${Math.floor(fakeDuration/60)}:${Math.floor(fakeDuration % 60)}0`    
     
 };
 

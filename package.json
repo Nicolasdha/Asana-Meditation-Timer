@@ -1,0 +1,22 @@
+{
+  "name": "asana_meditation_timer",
+  "version": "1.0.0",
+  "description": "Meditation Timer",
+  "main": "scripts.js",
+  "scripts": {
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nicolasdha/Asana-Meditation-Timer.git"
+  },
+  "author": "Nicolas Durik-Ha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nicolasdha/Asana-Meditation-Timer/issues"
+  },
+  "homepage": "https://Nicolasdha.github.io/Asana-Meditation-Timer#readme",
+  "dependencies": {
+    "gh-pages": "^3.1.0"
+  }
+}
