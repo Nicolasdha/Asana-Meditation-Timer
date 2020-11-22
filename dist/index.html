@@ -6,14 +6,18 @@
     <!-- Favicon Image -->
     <link href="favicon.png" rel="icon" type="image/x-icon"/>
         <title>Asana: Meditation Timer</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <style>
-    *{
+    
+*{
     margin:0;
     padding:0;
     box-sizing: border-box;
+    font-family: 'Marck Script', cursive;    
 }
 
 body {
@@ -46,6 +50,8 @@ header {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    font-size: 1rem;
+
 }
 
 .player-container {
@@ -65,7 +71,8 @@ header {
     position: absolute;
     bottom: 10%;
     color: white;
-    font-size: 50px;;
+    font-size: 50px;
+    letter-spacing: 3px;
 }
 
 video {
@@ -85,7 +92,7 @@ video {
     background: none;
     border: 2px solid white;
     border-radius: 5px;
-    font-size: 20px;
+    font-size: 1.5rem;
     transition: all .5s ease-out;
     margin-bottom: 15px;
 }
@@ -146,7 +153,6 @@ video {
     }
     
     .time-display {
-        position: absolute;
         bottom: -165px;
     }
     
@@ -191,6 +197,7 @@ video {
         left: 27%;
      }
 }
+
 
 </style>
 
